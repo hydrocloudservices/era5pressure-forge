@@ -96,7 +96,7 @@ def save_unique_variable_date_file(dates_vars):
         ds = ds.reduce(np.nansum, 'expver')
     # if all(pd.date_range(chosen_date, periods=24, freq='H') == ds.time.values):
     for dayofmonth in pd.date_range(ds.time.values[0],ds.time.values[-1])[::-1]:
-        ds1 = ds.sel(time=dayofmonth)
+        ds1 = ds.sel(time=dayofmonth.strftime("%Y-%m-%d"))
         for var in list(variables):
             filename = "{:04d}{:02d}{:02d}_{}_ERA5_PL_REANALYSIS.nc".format(dayofmonth.year,
                                                                             dayofmonth.month,
